@@ -31,8 +31,8 @@
                 <div class="col-xl-6 col-sm-6 col-md-8">
                     <ul class="topbar_info d-flex flex-wrap d-none d-sm-flex">
                         <li>
-                            <a href="mailto:123123@gmail.com">
-                                <i class="fas fa-envelope"></i> 123123@gmail.com
+                            <a href="mailto:openaivdoan@gmail.com">
+                                <i class="fas fa-envelope"></i> openaivdoan@gmail.com
                             </a>
                         </li>
                         <li class="d-none d-md-block">
@@ -72,8 +72,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"
-                            href="#">Thực đơn</a>
+                        <a class="nav-link {{ Request::routeIs('client.menu') ? 'active' : '' }}"
+                            href="{{ route('client.menu') }}">Thực đơn</a>
                     </li>
                 </ul>
 
@@ -85,9 +85,9 @@
                     </li>
                     <li>
                         @if (session('customer') || session('admin'))
-                            <a href="#"><i class="fas fa-user"></i></a>
+                            <a href="{{ route('client.info') }}"><i class="fas fa-user"></i></a>
                         @else
-                            <a href="#"><i class="fas fa-user"></i></a>
+                            <a href="{{ route('client.login.add') }}"><i class="fas fa-user"></i></a>
                         @endif
                     </li>
                 </ul>

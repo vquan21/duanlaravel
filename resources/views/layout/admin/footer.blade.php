@@ -2,7 +2,7 @@
     <p><b>Copyright
             <script type="text/javascript">
                 document.write(new Date().getFullYear());
-            </script> @lang('footerText')
+            </script> Copyright 2024 Phần mềm quản lý gọi món | Nhà phát triển của VTC
         </b></p>
 </div>
 </main>
@@ -24,10 +24,10 @@
 <script>
     function confirmDelete(id, route) {
         swal({
-            title: "@lang('swalWarning')",
-            text: "@lang('swalText')",
+            title: "Cảnh báo",
+            text: "Bạn có muốn xóa không",
             icon: "warning",
-            buttons: ["@lang('swalCancel')", "@lang('swalAgree')"],
+            buttons: ["Hủy bỏ", "Đồng ý"],
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
@@ -40,12 +40,12 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            swal("@lang('swalSuccess')", "@lang('swalSuccessText')", "success")
+                            swal("Thành công", "Xóa thành công", "success")
                                 .then(() => {
                                     window.location.reload();
                                 });
                         } else {
-                            swal("@lang('swalError')", "@lang('swalErrorText')", "error");
+                            swal("Thất bại", "Xóa thất bại", "error");
                         }
                     },
                     error: function() {
@@ -93,13 +93,13 @@
     function time() {
         var today = new Date();
         var weekday = new Array(7);
-        weekday[0] = "@lang('sunday')";
-        weekday[1] = "@lang('monday')";
-        weekday[2] = "@lang('tuesday')";
-        weekday[3] = "@lang('wednesday')";
-        weekday[4] = "@lang('thursday')";
-        weekday[5] = "@lang('friday')";
-        weekday[6] = "@lang('saturday')";
+        weekday[0] = "Chủ nhật";
+        weekday[1] = "Thứ 2";
+        weekday[2] = "Thứ 3";
+        weekday[3] = "Thứ 4";
+        weekday[4] = "Thứ 5";
+        weekday[5] = "Thứ 6";
+        weekday[6] = "Thứ 7";
         var day = weekday[today.getDay()];
         var dd = today.getDate();
         var mm = today.getMonth() + 1;
@@ -109,7 +109,7 @@
         var s = today.getSeconds();
         m = checkTime(m);
         s = checkTime(s);
-        nowTime = h + " @lang('hour') " + m + " @lang('minutes') " + s + " @lang('seconds')";
+        nowTime = h + " giờ " + m + " phút " + s + " giây";
         if (dd < 10) {
             dd = '0' + dd
         }

@@ -1,7 +1,7 @@
 @extends('layout.admin.index')
 
 @section('titlepage')
-    @lang('titleControlPanel')
+    Trang quản trị
 @endsection
 
 @section('content')

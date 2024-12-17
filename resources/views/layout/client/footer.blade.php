@@ -102,4 +102,155 @@
 <!--main/custom js-->
 <script src="{{ asset('js/main.js') }}"></script>
 
+<script>
+    $(document).ready(function() {
+        $('.add-to-favorite').click(function(e) {
+            e.preventDefault()
+
+            var dishId = $(this).data('dish-id')
+
+            $.ajax({
+                url: '{{ route('client.favorite.store') }}',
+                method: 'POST',
+                data: {
+                    id_mon_an: dishId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        FuiToast(response.success, {
+                            style: {
+                                backgroundColor: '#1DC071',
+                                width: 'auto',
+                            },
+                            className: 'dark-mode'
+                        })
+                    }
+                    if (response.error) {
+                        FuiToast(response.error, {
+                            style: {
+                                backgroundColor: 'yellow',
+                                width: 'auto',
+                                color: "#000000"
+                            },
+                            className: 'dark-mode'
+                        })
+                    }
+                },
+            })
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.rm-to-favorite').click(function(e) {
+            e.preventDefault()
+
+            var fvr_id = $(this).data('fvr-id')
+
+            $.ajax({
+                url: '{{ route('client.favorite.remove') }}',
+                method: 'POST',
+                data: {
+                    fvr_id: fvr_id,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        FuiToast(response.success, {
+                            style: {
+                                backgroundColor: '#1DC071',
+                                width: 'auto',
+                                color: "#ffffff",
+                            },
+                        })
+
+                        setTimeout(function() {
+                            location.reload()
+                        }, 1500)
+                    }
+                    if (response.error) {
+                        FuiToast(response.error, {
+                            style: {
+                                backgroundColor: 'yellow',
+                                width: 'auto',
+                                color: "#000000",
+                            },
+                        })
+                    }
+                },
+            })
+        })
+    })
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var citis = document.getElementById("city");
+        var districts = document.getElementById("district");
+        var wards = document.getElementById("ward");
+
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            method: "GET",
+        };
+
+        axios(Parameter).then(function(result) {
+            console.log("Dữ liệu đã được lấy thành công:", result.data);
+            renderCity(result.data);
+        }).catch(function(error) {
+            console.error("Lỗi khi lấy dữ liệu:", error);
+        });
+
+        function renderCity(data) {
+            // Xóa tất cả các tùy chọn trong dropdown 'city'
+            citis.innerHTML = '<option value="">Tỉnh/Thành phố:</option>';
+
+            // Điền dữ liệu vào dropdown 'city'
+            data.forEach(function(city) {
+                var option = new Option(city.Name, city.Name);
+                citis.add(option);
+            });
+
+            citis.onchange = function() {
+                console.log("Tỉnh/Thành phố đã chọn:", this.value);
+                districts.innerHTML = '<option value="">Quận/Huyện:</option>';
+                wards.innerHTML = '<option value="">Phường/Xã:</option>';
+                districts.disabled = true;
+                wards.disabled = true;
+
+                if (this.value !== "") {
+                    var selectedCity = data.find(city => city.Name === this.value);
+                    if (selectedCity && selectedCity.Districts) {
+                        districts.disabled = false;
+                        selectedCity.Districts.forEach(function(district) {
+                            var option = new Option(district.Name, district.Name);
+                            districts.add(option);
+                        });
+                    }
+                }
+            };
+
+            districts.onchange = function() {
+                console.log("Quận/Huyện đã chọn:", this.value);
+                wards.innerHTML = '<option value="">Phường/Xã:</option>';
+                wards.disabled = true;
+
+                if (this.value !== "") {
+                    var selectedCity = data.find(city => city.Name === citis.value);
+                    var selectedDistrict = selectedCity.Districts.find(district => district.Name === this
+                        .value);
+                    if (selectedDistrict && selectedDistrict.Wards) {
+                        wards.disabled = false;
+                        selectedDistrict.Wards.forEach(function(ward) {
+                            var option = new Option(ward.Name, ward.Name);
+                            wards.add(option);
+                        });
+                    }
+                }
+            };
+        }
+    });
+</script>
 </html>
