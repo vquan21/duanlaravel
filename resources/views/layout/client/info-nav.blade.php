@@ -28,8 +28,7 @@
             @endif
 
             <li>
-                <a class="{{ Request::routeIs('client.order_user') ? 'active' : '' }}"
-                    href="{{ route('client.order_user') }}">
+                <a class="" href="">
                     <span><i class="fas fa-bags-shopping"></i></span>
                     Đơn hàng
                 </a>

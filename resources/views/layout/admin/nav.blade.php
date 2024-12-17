@@ -11,7 +11,7 @@
         @endif
         <div>
             <p class="app-sidebar__user-name"><b>{{ session('admin')->ho_ten }}</b></p>
-            <p class="app-sidebar__user-designation">@lang('welcomeBack')</p>
+            <p class="app-sidebar__user-designation">Xin chào</p>
         </div>
     </div>
     <hr>
@@ -25,43 +25,43 @@
         <li>
             <a class="app-menu__item {{ Request::routeIs('admin.category') ? 'active' : '' }}" href="{{ route('admin.category') }}">
                 <i class='app-menu__icon bx bx-id-card'></i>
-                <span class="app-menu__label">@lang('categoryManagement')</span>
+                <span class="app-menu__label">Danh mục món ăn</span>
             </a>
         </li>
         <li>
             <a class="app-menu__item {{ Request::routeIs('admin.newscategory') ? 'active' : '' }}" href="{{ route('admin.newscategory') }}">
                 <i class='app-menu__icon bx bx-category'></i>
-                <span class="app-menu__label">@lang('newsCategory')</span>
+                <span class="app-menu__label">Danh mục tin tức</span>
             </a>
         </li>
         <li>
             <a class="app-menu__item {{ Request::routeIs('admin.dish') ? 'active' : '' }}" href="{{ route('admin.dish') }}">
                 <i class='app-menu__icon bx bx-dish'></i>
-                <span class="app-menu__label">@lang('dishManagement')</span>
+                <span class="app-menu__label">Quản lý món ăn</span>
             </a>
         </li>
         <li>
             <a class="app-menu__item {{ Request::routeIs('admin.news') ? 'active' : '' }}" href="{{ route('admin.news') }}">
                 <i class='app-menu__icon bx bx-news'></i>
-                <span class="app-menu__label">@lang('newsManagement')</span>
+                <span class="app-menu__label">Quản lý tin tức</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item {{ Request::routeIs('admin.orders') ? 'active' : '' }}" href="{{ route('admin.orders') }}">
+            <a class="app-menu__item ">
                 <i class='app-menu__icon bx bx-task'></i>
-                <span class="app-menu__label">@lang('orderManagement')</span>
+                <span class="app-menu__label">Quản lý đơn hàng</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item {{ Request::routeIs('admin.account') ? 'active' : '' }}" href="{{ route('admin.account') }}">
+            <a class="app-menu__item">
                 <i class='app-menu__icon bx bx-user-voice'></i>
-                <span class="app-menu__label">@lang('accountManagement')</span>
+                <span class="app-menu__label">Quản lý tài khoản</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item {{ Request::routeIs('admin.sales') ? 'active' : '' }}" href="{{ route('admin.sales') }}">
+            <a class="app-menu__item">
                 <i class='app-menu__icon bx bx-pie-chart-alt-2'></i>
-                <span class="app-menu__label">@lang('saleManagement')</span>
+                <span class="app-menu__label">Quản lý giảm giá</span>
             </a>
         </li>
     </ul>
