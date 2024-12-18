@@ -50,8 +50,8 @@ Route::prefix("admin")
     });
 
 
-Route::prefix("client")->group(function () {
-    Route::get("home", [HomeController::class, "index"])->name("client.home");
+Route::prefix("/")->group(function () {
+    Route::get("/", [HomeController::class, "index"])->name("client.home");
 
     Route::get("favorite", [FavoriteController::class, "index"])->name("client.favorite");
     Route::post("favorite/add", [FavoriteController::class, "store"])->name("client.favorite.store");
@@ -72,6 +72,6 @@ Route::prefix("client")->group(function () {
     Route::post("forgot/post", [AccountController::class, "forgotForm"])->name("client.forgot.store");
     Route::get("pass/change", [AccountController::class, "changePass"])->name("client.changepass.add");
     Route::post("pass/change/post", [AccountController::class, "changePassForm"])->name("client.changepass.store");
-    
+
     Route::post('/comment', [HomeController::class, 'comment'])->name('comment');
 });

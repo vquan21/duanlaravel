@@ -188,11 +188,7 @@ class AccountController extends Controller
                 } else if ($get_user->vai_tro == 0) {
                     $request->session()->put('customer', $updated_user);
                 }
-
-                Mail::send("emails.infoedit", compact("user_name", "user_phone", "user_email", "user_image", "user_address"), function ($email) use ($user_name, $user_email, $welcome) {
-                    $email->to($user_email, $user_name)->subject($welcome);
-                });
-                return redirect()->route('client.info')->with("success", "😍 Cập nhật tài khoản thành công, bạn hãy kiểm tra email của mình !");
+                return redirect()->route('client.info')->with("success", "😍 Cập nhật tài khoản thành công!");
             }
         } else {
             return view("404");
@@ -250,10 +246,7 @@ class AccountController extends Controller
             $user_name = $get_user->ho_ten;
             $user_pass = $new_pass;
 
-            Mail::send("emails.forgot", compact("user_name", "user_email", "user_pass"), function ($email) use ($user_name, $user_email, $welcome) {
-                $email->to($user_email, $user_name)->subject($welcome);
-            });
-            return redirect()->route('client.forgot.add')->with("success", "😍 Yêu cầu đã được xử lý, bạn hãy kiểm tra email của mình !");
+            return redirect()->route('client.forgot.add')->with("success", "😍 Yêu cầu đã được xử lý!");
         }
     }
 
@@ -309,10 +302,6 @@ class AccountController extends Controller
                 $user_email = $get_user->email;
                 $user_name = $get_user->ho_ten;
                 $user_pass = $request->new_pass;
-
-                Mail::send("emails.newpass", compact("user_name", "user_email", "user_pass"), function ($email) use ($user_name, $user_email, $welcome) {
-                    $email->to($user_email, $user_name)->subject($welcome);
-                });
 
                 return back()->with("success", "Mật khẩu của bạn đã được thay đổi !");
             } else {
